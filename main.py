@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-import uvicorn
 import joblib
 import pandas as pd
 
@@ -23,8 +22,4 @@ async def predict(name:str):
     sexe = ("M" if sexe[0]==0 else "F")
 
     return {"name":name, "predicted_sex":sexe}
-
-
-if __name__ == "__main__":
-    uvicorn.run(names_app, host="0.0.0.0", port=5000)
 
