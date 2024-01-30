@@ -46,7 +46,7 @@ jobs:
                 gcloud compute instances create-with-container prenoms-api-tom \
                   --container-image tommydock21/repo-mlops-gender-prediction:github_${{ github.sha }} \
                   --tags http-server \
-                  --zone europe-west9-a \
+                  --zone us-central1-c \
                   --container-env FLASK_PORT=80
       
             - name: Update API to GCP Compute Instance
@@ -54,5 +54,5 @@ jobs:
               run: |
                 gcloud compute instances update-container prenoms-api-tom \
                   --container-image tommydock21/repo-mlops-gender-prediction:github_${{ github.sha }} \
-                  --zone europe-west9-a \
+                  --zone us-central1-c \
                   --container-env FLASK_PORT=80 
