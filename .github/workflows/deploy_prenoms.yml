@@ -12,9 +12,15 @@ jobs:
 
         steps:
             - uses: actions/checkout@v3
-              
-            - name: afficher le dossier
-              run: ls -l
             
-            - name: Afficher la date
-              run: date
+            - name: Docker build
+              run: docker build -t prenoms .
+      
+            - name: Docker login
+              run: docker login -u tommydock21 -p ${{ secrets.DOCKERHUB_PASSWORD }}
+      
+            - name: Docker tag
+              run: docker tag prenoms tommydock21/repo-mlops-gender-prediction:latest_github_${{ github.sha }}
+      
+            - name: Docker push
+              run: docker push tommydock21/repo-mlops-gender-prediction:latest_github_${{ github.sha }}
