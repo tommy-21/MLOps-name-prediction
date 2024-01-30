@@ -38,8 +38,11 @@ jobs:
 
             - name: Remove the last machine
               run: |
+                container_id=$(docker ps | grep 'tommydock21/repo-mlops-gender-prediction' | awk '{print $1}')
+                image=$(sudo docker image ls | grep 'tommydock21/repo-mlops-gender-prediction' | awk '{print $3}')
                 docker stop $container_id
                 docker remove $container_id
+                docker rmi $image
 
             - name: Pull the image
               run: docker pull tommydock21/repo-mlops-gender-prediction:latest_github_${{ github.sha }}
