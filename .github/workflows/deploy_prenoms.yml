@@ -47,7 +47,7 @@ jobs:
                   --container-image tommydock21/repo-mlops-gender-prediction:github_${{ github.sha }} \
                   --tags http-server \
                   --zone asia-east1-a \
-                  --container-env FLASK_PORT=80
+                  --container-env FASTAPI_PORT=80
       
             - name: Update API to GCP Compute Instance
               if: steps.check.outputs.INSTANCE_EXISTS != '0'
@@ -55,4 +55,4 @@ jobs:
                 gcloud compute instances update-container prenoms-api-tom \
                   --container-image tommydock21/repo-mlops-gender-prediction:github_${{ github.sha }} \
                   --zone asia-east1-a \
-                  --container-env FLASK_PORT=80 
+                  --container-env FASTAPI_PORT=80 
