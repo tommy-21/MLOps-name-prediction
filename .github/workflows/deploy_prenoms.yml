@@ -12,6 +12,9 @@ jobs:
 
         steps:
             - uses: actions/checkout@v3
+              
+            - name: afficher le dossier
+              run: ls -l
             
             - name: Afficher la date
               run: date
