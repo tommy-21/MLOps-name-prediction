@@ -24,3 +24,16 @@ jobs:
       
             - name: Docker push
               run: docker push tommydock21/repo-mlops-gender-prediction:latest_github_${{ github.sha }}
+
+
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v3
+            
+            - name: SSH Connect to the VM
+              run: gcloud compute ssh --zone "us-central1-c" "gender-predict-tom" --project "ensai-2024" 
+
+            - name: Confirm connexion
+              run: pwd
